@@ -1,0 +1,82 @@
+<script>
+
+/* Global variables */
+var TEXT_INPUTS = ['gymName','gymOwner','email', 'highlevelLocationId']
+  
+/**
+ * On document load, assign required handlers to each element,
+ * and attempt to load any saved settings.
+ */
+$(function() {
+  $('#saveAndNext').click(saveSettingsToServer);
+  
+});
+
+
+/**
+ * Collects the options specified in the sidebar, validates for required fields, and sends them to be saved on the sheet
+ */
+function saveSettingsToServer() {
+  showLoadingSign()
+  $('#cactus-alert').remove();
+  
+  try {
+    if (!validateForm()) return;
+    var settings = buildSettings();
+  } catch(err) {
+    somethingWentWrong(err)
+    return
+  }
+  
+  // Save the settings on the server
+  google.script.run
+      .withSuccessHandler(showAlert)
+      .withFailureHandler(somethingWentWrong)
+      .makeNewCopy(settings); 
+}
+
+ /**
+ * Collect the settings from the input fields
+ */
+function buildSettings() {
+
+  var settings = {
+    
+  };
+
+  
+  TEXT_INPUTS.forEach(function(prop){
+    var textInput = $('#'+prop)
+    if (textInput) settings[prop] = textInput.val();
+  })
+  return settings
+}
+
+
+
+// Form validation
+function validateForm() {
+  var allRequiredAreFilled = true;
+  // Required text inputs and selects
+  $('input[type="text"], select').filter('[required]:visible').each(function(){
+    var requiredInput = $(this)
+      if( requiredInput.val() == "" ){
+        requiredInput.addClass('invalid')
+        allRequiredAreFilled = false;
+      } else {
+        requiredInput.removeClass('invalid')
+      }
+  });
+
+  
+  if (!allRequiredAreFilled) {
+    showAlert({
+      type: 'warning',
+      message: "The fields in red are required.",
+      autoClose: false
+    })
+  }
+
+  return allRequiredAreFilled
+}
+</script>

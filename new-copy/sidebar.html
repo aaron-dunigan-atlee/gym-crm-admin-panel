@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_blank">
+
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
+    <?!= include('html/sidebar-css') ?>
+    
+  </head>
+  <body>
+    <div class="sidebar">
+      <div class="sidebar__header d-flex flex-column justify-content-around align-items-center px-3 py-2">
+        <span class="sidebar__title">New CRM</span>
+      </div>
+      <hr class="m-0">
+      <div class="sidebar__body py-1 px-3">
+        <div class="row">
+          <div class="col">
+  
+            <form>
+              <div class="block">
+
+                <label for="gymName">
+                  Gym Name
+                </label>
+                <input type="text" class="w-100 form-control" id="gymName" required />
+
+                <label for="gymOwner">
+                  Gym Owner
+                </label>
+                <input type="text" class="w-100 form-control" id="gymOwner" required />
+
+                <label for="email">
+                  Email
+                </label>
+                <input type="text" class="w-100 form-control" id="email" required />
+
+                <label for="highlevelLocationId">
+                  HighLevel Location ID
+                </label>
+                <input type="text" class="w-100 form-control" id="highlevelLocationId" required />
+
+              </div>
+
+              <div class="block" id="button-bar">
+                <button type="button" class="fancy-button" id="saveAndNext">Create CRM <i class="fas fa-arrow-right"></i></button>
+              </div>
+            </form>
+
+          </div>
+        </div>
+
+      </div> 
+
+
+
+      <div class="sidebar__footer p-3">
+        <div class="row">
+          <div class="col">
+            <div>
+              <img src="<?=BRAND_LOGO_URL?>" alt="logo" class="logo-img">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+  
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" crossorigin="anonymous"></script>
+    
+    <?!= include('html/loading-sign-js') ?>
+    <?!= include('html/alerts-js') ?>
+    <?!= include('new-copy/js') ?>
+  </body>
+</html>
